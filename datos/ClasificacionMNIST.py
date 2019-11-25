@@ -30,7 +30,7 @@ test_loader  = DataLoader(test_data,  batch_size=bs, shuffle=False)
 # Definimos modelo
 # ==================
 
-# Se define el modelo 
+# Se define el modelo
 model = RegresionMultinomial(input_size, num_classes).to(device)
 loss_function = nn.CrossEntropyLoss()
 
@@ -44,23 +44,23 @@ optimizer = torch.optim.SGD(model.parameters(), lr=lr)
 # Entrenamiento del modelo
 for epoch in range(num_epochs):
   for i, (xi, yi) in enumerate(train_loader):
-    
+
     # Las entradas de la imagen se convierten en vectores
     xi = xi.reshape(-1, 28*28).to(device)# imagenes
     yi = yi.to(device)# etiquetas
-    
+
     # Propagacion para adelante
     output = model(xi)
     loss = loss_function(output, yi)
     # Propagcion para atras y paso de optimizacion
-    
+
     optimizer.zero_grad()
     loss.backward()
     optimizer.step()
-    
+
     if (i+1) % 100 == 0:
       print ('Epoca: {}/{}, Paso: {}/{}, Perdida: {:.5f}'.format(epoch+1,num_epochs, i+1, len(train_loader), loss.item()))
-      
+
 # Prueba del modelo
 # Al probar, usamos torch.no_grad() porque reduce el uso de memoria y velocidad al evaluar
 with torch.no_grad():
@@ -70,25 +70,25 @@ with torch.no_grad():
     # Las entradas de la imagen se convierten en vectores
     xi = xi.reshape(-1, 28*28).to(device)
     yi = yi.to(device)
-    
+
     # Se hacen las predicciones
     output = model(xi)
     _, predicted = torch.max(output.data, 1)
-    
+
     total += yi.size(0)
     correct += (predicted == yi).sum().item()
-    
+
   print(f'Precision del modelo en {total} imagenes: {100 * correct / total}')
-  
+
   # Precision del modelo en 10000 imagenes: 83.31
-  
+
  # [COMENTARIO]
- save_model = False
- if save_model is True:
-   torch.save(model.state_dict(),'modelo.ckpt')
-   
-   
-   
+ #save_model = False
+ #if save_model is True:
+ #  torch.save(model.state_dict(),'modelo.ckpt')
+
+
+
 # ==================
 # Definimos modelo RedNeuronal
 # ==================
@@ -96,7 +96,7 @@ with torch.no_grad():
 from modelos import RedNeuronal
 
 
-# Se define el modelo 
+# Se define el modelo
 model = RedNeuronal(input_size, num_classes).to(device)
 loss_function = nn.CrossEntropyLoss()
 
@@ -110,23 +110,23 @@ optimizer = torch.optim.SGD(model.parameters(), lr=lr)
 # Entrenamiento del modelo
 for epoch in range(num_epochs):
   for i, (xi, yi) in enumerate(train_loader):
-    
+
     # [COMENTARIO]
     xi = xi.reshape(-1, 28*28).to(device)# imagenes
     yi = yi.to(device)# etiquetas
-    
+
     # Propagacion para adelante
     output = model(xi)
     loss = loss_function(output, yi)
     # Propagcion para atras y paso de optimizacion
-    
+
     optimizer.zero_grad()
     loss.backward()
     optimizer.step()
-    
+
     if (i+1) % 100 == 0:
       print ('Epoca: {}/{}, Paso: {}/{}, Perdida: {:.5f}'.format(epoch+1,num_epochs, i+1, len(train_loader), loss.item()))
-      
+
 # Prueba del modelo
 # Al probar, usamos torch.no_grad() porque [COMENTARIO]
 with torch.no_grad():
@@ -136,26 +136,26 @@ with torch.no_grad():
     # [COMENTARIO]
     xi = xi.reshape(-1, 28*28).to(device)
     yi = yi.to(device)
-    
+
     # [COMENTARIO]
     output = model(xi)
     _, predicted = torch.max(output.data, 1)
-    
+
     total += yi.size(0)
     correct += (predicted == yi).sum().item()
-    
+
   print(f'Precision del modelo en {total} imagenes: {100 * correct / total}')
-  
+
   # Precision del modelo en 10000 imagenes: 83.31
-  
+
  # [COMENTARIO]
- save_model = False
- if save_model is True:
-   torch.save(model.state_dict(),'modelo.ckpt')
-   
-   
-   
-   
+# save_model = False
+ #if save_model is True:
+ #  torch.save(model.state_dict(),'modelo.ckpt')
+
+
+
+
 # ==================
 # Definimos modelo RedNeuronal3
 # ==================
@@ -163,7 +163,7 @@ with torch.no_grad():
 from modelos import RedNeuronal3
 
 
-# Se define el modelo 
+# Se define el modelo
 model = RedNeuronal3(input_size, num_classes).to(device)
 loss_function = nn.CrossEntropyLoss()
 
@@ -177,23 +177,23 @@ optimizer = torch.optim.SGD(model.parameters(), lr=lr)
 # Entrenamiento del modelo
 for epoch in range(num_epochs):
   for i, (xi, yi) in enumerate(train_loader):
-    
+
     # [COMENTARIO]
     xi = xi.reshape(-1, 28*28).to(device)# imagenes
     yi = yi.to(device)# etiquetas
-    
+
     # Propagacion para adelante
     output = model(xi)
     loss = loss_function(output, yi)
     # Propagcion para atras y paso de optimizacion
-    
+
     optimizer.zero_grad()
     loss.backward()
     optimizer.step()
-    
+
     if (i+1) % 100 == 0:
       print ('Epoca: {}/{}, Paso: {}/{}, Perdida: {:.5f}'.format(epoch+1,num_epochs, i+1, len(train_loader), loss.item()))
-      
+
 # Prueba del modelo
 # Al probar, usamos torch.no_grad() porque [COMENTARIO]
 with torch.no_grad():
@@ -203,19 +203,19 @@ with torch.no_grad():
     # [COMENTARIO]
     xi = xi.reshape(-1, 28*28).to(device)
     yi = yi.to(device)
-    
+
     # [COMENTARIO]
     output = model(xi)
     _, predicted = torch.max(output.data, 1)
-    
+
     total += yi.size(0)
     correct += (predicted == yi).sum().item()
-    
+
   print(f'Precision del modelo en {total} imagenes: {100 * correct / total}')
-  
+
   # Precision del modelo en 10000 imagenes: 83.31
-  
+
  # [COMENTARIO]
- save_model = False
- if save_model is True:
-   torch.save(model.state_dict(),'modelo.ckpt')
+# save_model = False
+# if save_model is True:
+#   torch.save(model.state_dict(),'modelo.ckpt')
